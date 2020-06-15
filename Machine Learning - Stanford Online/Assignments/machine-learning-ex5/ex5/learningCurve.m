@@ -53,8 +53,17 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+%[theta] = trainLinearReg(X, y, lambda);
 
 
+for i = 1:m % Perform training on increasing size of training data
+  Xi = X(1:i, :);
+  yi = y(1:i);
+  [thetai] = trainLinearReg(Xi, yi, lambda);
+  
+  error_train(i) = linearRegCostFunction(Xi, yi, thetai, 0);
+  error_val(i) = linearRegCostFunction(Xval, yval, thetai, 0);
+end
 
 
 
